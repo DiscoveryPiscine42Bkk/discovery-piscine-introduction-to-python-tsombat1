@@ -19,10 +19,12 @@ def is_in_check(board):
     directions = {
         'rook': [(-1,0), (1,0), (0,-1), (0,1)],
         'bishop': [(-1,-1), (-1,1), (1,-1), (1,1)],
-        'queen': [(-1,0), (1,0), (0,-1), (0,1), (-1,-1), (-1,1), (1,-1), (1,1)]
+        'queen': [(-1,0), (1,0), (0,-1), (0,1), (-1,-1), (-1,1), (1,-1), (1,1)],
+        'knight': [(-2, -1), (-2, 1), (-1, -2), (-1, 2),
+                   (1, -2), (1, 2), (2, -1), (2, 1)]
     }
 
-    for dx, dy in [(-1, -1), (-1, 1)]:  # Pawn เดินทแยงลง
+    for dx, dy in [(-1, -1), (-1, 1)]:
         ni, nj = ki + dx, kj + dy
         if 0 <= ni < size and 0 <= nj < size and board[ni][nj] == 'P':
             print("Success")
@@ -49,5 +51,11 @@ def is_in_check(board):
                 break
             x += dx
             y += dy
+
+    for dx, dy in directions['knight']:
+        ni, nj = ki + dx, kj + dy
+        if 0 <= ni < size and 0 <= nj < size and board[ni][nj] == 'N':
+            print("Success")
+            return
 
     print("Fail")
